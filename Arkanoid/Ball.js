@@ -1,24 +1,20 @@
 ﻿
 function Ball()
 {
-    this.state;
-    this.velocityX = 10;
-    this.velocityY = 10;
-    this.speed;
+    this.state;          //Balls state (will be used for ball types.
+    this.velocityX = 10; //start velocity X
+    this.velocityY = 10; //start velocity Y
+    this.speed;          // public speed variable
 }
 Ball.prototype = new Cuboid(50, 50, 50, 0xffffff, true);
 Ball.constructor = Ball;
-Ball.prototype.LoadBall = function ()
+Ball.prototype.LoadBall = function () // Ball initialize/load function
 {
     this.state = "normal";
     this.speed = 1;
 }
-Ball.prototype.update = function ()
+Ball.prototype.update = function () //Balls update Velocity
 {
-//    if (ball.velocityY > 10)
-//    {
-//        ball.velocityY = 10;
-//    }
     this.position.y += (this.velocityY * this.speed);
     this.position.x += (this.velocityX * this.speed);
     
@@ -26,5 +22,6 @@ Ball.prototype.update = function ()
     {
         case "normal":
             this.speed = 1;
+            break;
     }
 }

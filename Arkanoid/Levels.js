@@ -2,11 +2,16 @@
 {
     this.currentlevel = 1;
 }
+Levels.prototype.setCurrentLevel = function(lv)
+{
+    this.currentlevel = lv;
+}
 Levels.prototype.loadLevel = function(levelnumber)
 {
+   
     switch (levelnumber)
     {
-        case 1:
+        case 1: // level 1
             
             for (r1 = 0; r1 < 10; r1++) {
                 BricksArray[r1] = brick.clone();
@@ -30,7 +35,7 @@ Levels.prototype.loadLevel = function(levelnumber)
                 scene.add(BricksArray[r3 + 18]);
             }
             break;
-        case 2:
+        case 2: //level 2
             for (x = 0; x < 23; x++) //loops 23 times in order to draw a row, with each iteration all three rows are drawn
             {
 
@@ -61,3 +66,4 @@ Levels.prototype.loadLevel = function(levelnumber)
     }
        
 }
+Levels.constructor = Levels;

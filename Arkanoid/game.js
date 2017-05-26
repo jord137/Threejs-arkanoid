@@ -28,10 +28,11 @@ function init() {
     counter = new Counter();
     ball.speed = 10;
     //LOAD PROPERTIES
-    if (levels.currentlevel != null)
-    {
-        levels.loadLevel(levels.currentlevel);
-    }
+    levels.loadLevel(2);
+    //if (levels.currentlevel != null)        //uncomment this and comment the line above once i've worked out how to reset the brick array
+    //{
+    //    levels.loadLevel(levels.currentlevel);
+    //}
     
     ball.LoadBall();
     paddle.loadPaddle();
@@ -44,18 +45,13 @@ function init() {
     scene.add(bottomWall);
     scene.add(floor);
 
-    
-
-
-   
      // the renderer WEBGL
     renderer = new THREE.WebGLRenderer();
     renderer.setSize((window.innerWidth / 1.2), (window.innerHeight / 1.2));
-
     document.body.appendChild(renderer.domElement);
     Setup();
 }
-function Setup()
+function Setup() // Seperate setup function is called at the end of Init() just to make sure these don't get reordered. they need to be at the end of init()
 {
     paddle.position.y = -450;
     ball.position.y = (paddle.position.y + 55);
@@ -65,23 +61,22 @@ function Setup()
     counter.setup();
 }
 
-function animate() {
-    VelXhtml.innerHTML = ball.velocityX;
-    VelYhtml.innerHTML = ball.velocityY;
-    requestAnimationFrame(animate);
-    counter.onGUI();
+function animate() { // animation function
+   // VelXhtml.innerHTML = ball.velocityX; uncomment these for Velocity Debug
+   // VelYhtml.innerHTML = ball.velocityY; 
+    requestAnimationFrame(animate); //request animation frame  (update)
+    counter.onGUI(); // GUI update loop for the score counter
     for( i = 0; i < BricksArray.length; i++)
     {
+        collision = new Collision(ball, BricksArray[i]); //collision
         
-        collision = new Collision(ball, BricksArray[i]);
-        
-        switch (BricksArray[i].state)
+        switch (BricksArray[i].state) // sets the material and health, health is currently useless.
         {
-            case "normal":
+            case "normal": //standard brick
                 BricksArray[i].health = 100;
                 BricksArray[i].material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
                 break;
-            case "double":
+            case "double": //double strength brick, strength is handled in the collision function at the moment.
                 BricksArray[i].material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
                 break;
 
@@ -91,8 +86,8 @@ function animate() {
 
     
     
-    ball.update();
-    paddle.updater();
+    ball.update(); // updates the balls position and settings.
+    paddle.updater(); //updates the paddles position and settings.
     
-    renderer.render(scene, camera);
+    renderer.render(scene, camera); //renderer
 }

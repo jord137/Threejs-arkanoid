@@ -1,4 +1,4 @@
-﻿function Brick()
+﻿function Brick() // Brick class
 {
     this.state;
     this.health;

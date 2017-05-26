@@ -24,14 +24,14 @@ Paddle.prototype.CheckSideHit = function () // Checks to see if the paddle has c
 
 Paddle.prototype.CheckBallHit = function () //checks to see if the ball has hit the paddle
 {
-    if ((ball.position.y - 25) <= (paddle.position.y + 30) &&
+    if ((ball.position.y - 25) <= (paddle.position.y + 30) && // y + 30 to allow 5 each side of paddle (prevents clipping)
         ((ball.position.y >= paddle.position.y - 30)) && (ball.position.x + 25) >=
         (paddle.position.x - (this.width / 2)) && (ball.position.x - 25) <=
         (paddle.position.x + (this.width / 2)))
     {
         if (ball.position.x >= paddle.position.x - 100 && ball.position.x < paddle.position.x)
         {
-            
+            // currently redundant.
         }
         else if (ball.position.x <= paddle.position.x + 100 && ball.position.x > paddle.position.x)
         {

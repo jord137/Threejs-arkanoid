@@ -26,11 +26,7 @@
     {
         ball.velocityX = -10;       //reversal (shouldn't really be static (should be inverted velocityX really)
     }
-    if (ballpos.position.y <= (paddle.position.y + 25) && ballpos.position.y >= (paddle.position.y - 25) && ballpos.position.x >=( paddle.position.x - 50) && ballpos.position.x <= paddle.position.x + 50)
-    {
-                                    /*this is currently redundant as the paddle collider is now updated inside of the paddle for single responsibility however i'm keeping it here as a backup.
-                                    (slightly unprofessional i know but my internet is down so i can't access GIT) */
-    }
+  
     if ((ballpos.position.y + 25) >= (topWall.position.y - 20))
     {
         ball.velocityY = -10;
